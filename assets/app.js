@@ -1,19 +1,39 @@
+//let searchCity = JSON.parse(localStorage.getItem('history'))
+let searchCity = JSON.parse(localStorage.getItem('history')) || []
 
+let renderHistory = () => {
+  document.getElementById('history').innerHTML = ''
+  for (let i = 0; i < searchCity.length; i++) {
+    console.log(searchCity[i])
+    let historyElem = document.createElement('button')
+    historyElem.textContent = searchCity[i].history
+    document.getElementById('history').append(historyElem)
+
+  }
+}
 //create search logic
 document.getElementById('search').addEventListener('click', event => {
-  console.log('ping')
+  //console.log('ping')
   event.preventDefault()
   let city = document.getElementById('city-name').value
-  localStorage.setItem('history', JSON.stringify(city))
-  document.getElementById('history').append(city)
-  console.log(city)
+  //localStorage.setItem('history', JSON.stringify(city))
+
+  let cityHistory = document.getElementById('city-name').value
+  let historyObj = {
+    history: cityHistory
+  }
+  searchCity.push(historyObj)
+  localStorage.setItem('history', JSON.stringify(searchCity))
+  console.log(searchCity)
+  renderHistory()
+  //console.log(historyObj)
 
   //fetch request for main weather info
   fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&&units=imperial&appid=25b4466b181066c6d16ec93bc2dfa591`)
 
     .then(r => r.json())
     .then(weather => {
-      console.log(weather)
+      //console.log(weather)
       let icon = weather.weather[0].icon
       let iconUrl = "http://openweathermap.org/img/w/" + icon + ".png"
       document.getElementById('current-icon').src = iconUrl
@@ -24,19 +44,16 @@ document.getElementById('search').addEventListener('click', event => {
       //get lat/lon to use in retreiving UV index info
       let lat = weather.coord.lat
       let lon = weather.coord.lon
-      console.log(lat)
-      console.log(lon)
+      //console.log(lat)
+      //console.log(lon)
 
       //fetch request for UV index value
       fetch(`http://api.openweathermap.org/data/2.5/uvi?appid=25b4466b181066c6d16ec93bc2dfa591&lat=${lat}&lon=${lon}`)
         .then(r => r.json())
         .then(uv => {
-          console.log(uv)
+          // console.log(uv)
           document.getElementById('uv').textContent = "UV Index: " + uv.value
         })
-
-
-
 
 
     })
@@ -48,6 +65,7 @@ document.getElementById('search').addEventListener('click', event => {
 
 })
 
+renderHistory()
 
 
 
