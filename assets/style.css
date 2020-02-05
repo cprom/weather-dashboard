@@ -1,0 +1,16 @@
+
+header {
+  color: white;
+  text-align: center;
+  background: #546e7a;
+  height: 100px;
+  padding-top: 5px;
+}
+
+.current-weather {
+  font-size: 25px;
+}
+
+#current-city.card-title {
+  font-size: 35px;
+}
