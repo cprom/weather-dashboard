@@ -33,9 +33,13 @@ document.getElementById('search').addEventListener('click', event => {
 
     .then(r => r.json())
     .then(weather => {
-      //console.log(weather)
+      console.log(weather)
+      let currentDate = new Date(weather.dt * 1000).toLocaleDateString("en-US")
+      console.log(currentDate)
       let icon = weather.weather[0].icon
       let iconUrl = "https://openweathermap.org/img/w/" + icon + ".png"
+      // console.log(iconUrl)
+      document.getElementById('current-date').innerHTML = currentDate
       document.getElementById('current-icon').src = iconUrl
       document.getElementById('current-city').innerHTML = weather.name
       document.getElementById('temp').innerHTML = "Temperature: " + Math.floor(weather.main.temp) + " " + String.fromCharCode(176) + "F"
@@ -82,17 +86,53 @@ document.getElementById('search').addEventListener('click', event => {
           for (let i = 0; i < forecast.list.length; i += 8) {
             let forecastArr = cityForecast.push(forecast.list[i])
 
-
-
-            //cityForecast.push(cityForecast)
-            console.log(cityForecast)
-            //console.log(iconArr)
-            //console.log(tempArr)
-            //document.getElementById('weather-info').innerHTML = cityForecast[0]
           }
 
-          //console.log(forecast.list)
-          // console.log(forecast.list[0])
+          let iconOne = cityForecast[0].weather[0].icon
+          let iconTwo = cityForecast[1].weather[0].icon
+          let iconThree = cityForecast[2].weather[0].icon
+          let iconFour = cityForecast[3].weather[0].icon
+          let iconFive = cityForecast[4].weather[0].icon
+          let iconUrlOne = "https://openweathermap.org/img/w/" + iconOne + ".png"
+          let iconUrlTwo = "https://openweathermap.org/img/w/" + iconTwo + ".png"
+          let iconUrlThree = "https://openweathermap.org/img/w/" + iconThree + ".png"
+          let iconUrlFour = "https://openweathermap.org/img/w/" + iconFour + ".png"
+          let iconUrlFive = "https://openweathermap.org/img/w/" + iconFive + ".png"
+
+
+          let theDateOne = new Date(cityForecast[0].dt * 1000).toLocaleDateString("en-US")
+          let theDateTwo = new Date(cityForecast[1].dt * 1000).toLocaleDateString("en-US")
+          let theDateThree = new Date(cityForecast[2].dt * 1000).toLocaleDateString("en-US")
+          let theDateFour = new Date(cityForecast[3].dt * 1000).toLocaleDateString("en-US")
+          let theDateFive = new Date(cityForecast[4].dt * 1000).toLocaleDateString("en-US")
+
+          document.getElementById('day-one').innerHTML = theDateOne
+          document.getElementById('iconOne').src = iconUrlOne
+          document.getElementById('tempOne').innerHTML = "Temperature: " + cityForecast[0].main.temp + " " + String.fromCharCode(176) + "F"
+          document.getElementById('humidityOne').innerHTML = "Humidity: " + cityForecast[0].main.humidity + " %"
+
+          document.getElementById('day-two').innerHTML = theDateTwo
+          document.getElementById('iconTwo').src = iconUrlTwo
+          document.getElementById('tempTwo').innerHTML = "Temperature: " + cityForecast[1].main.temp + " " + String.fromCharCode(176) + "F"
+          document.getElementById('humidityTwo').innerHTML = "Humidity: " + cityForecast[1].main.humidity + " %"
+
+          document.getElementById('day-three').innerHTML = theDateThree
+          document.getElementById('iconThree').src = iconUrlThree
+          document.getElementById('tempThree').innerHTML = "Temperature: " + cityForecast[2].main.temp + " " + String.fromCharCode(176) + "F"
+          document.getElementById('humidityThree').innerHTML = "Humidity: " + cityForecast[2].main.humidity + " %"
+
+          document.getElementById('day-four').innerHTML = theDateFour
+          document.getElementById('iconFour').src = iconUrlFour
+          document.getElementById('tempFour').innerHTML = "Temperature: " + cityForecast[3].main.temp + " " + String.fromCharCode(176) + "F"
+          document.getElementById('humidityFour').innerHTML = "Humidity: " + cityForecast[3].main.humidity + " %"
+
+          document.getElementById('day-five').innerHTML = theDateFive
+          document.getElementById('iconFive').src = iconUrlFive
+          document.getElementById('tempFive').innerHTML = "Temperature: " + cityForecast[4].main.temp + " " + String.fromCharCode(176) + "F"
+          document.getElementById('humidityFive').innerHTML = "Humidity: " + cityForecast[4].main.humidity + " %"
+
+
+
         })
 
 
