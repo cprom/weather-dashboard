@@ -35,3 +35,8 @@ header {
 .extreme-uv {
   background: purple;
 }
+
+div.fiveDay-container {
+ align-items: center;
+  text-align: center;
+}
