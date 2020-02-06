@@ -36,7 +36,10 @@ header {
   background: purple;
 }
 
-div.fiveDay-container {
- align-items: center;
+.fiveDay-container {
   text-align: center;
+  padding: auto;
+  margin: auto;
 }
+
+
