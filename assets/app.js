@@ -14,7 +14,7 @@ let renderHistory = () => {
 //create search logic
 document.getElementById('search').addEventListener('click', event => {
   //console.log('ping')
-  event.preventDefault()
+  // event.preventDefault()
   let city = document.getElementById('city-name').value
   //localStorage.setItem('history', JSON.stringify(city))
 
@@ -70,7 +70,7 @@ document.getElementById('search').addEventListener('click', event => {
           else if (uv.value >= 3 && uv.value <= 5) {
             document.getElementById('uv').classList.add('mod-uv', 'black-text')
           }
-          else if (uv.value <= 2) {
+          else {
             document.getElementById('uv').classList.add('low-uv', 'black-text')
           }
         })
