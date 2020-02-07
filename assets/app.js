@@ -6,8 +6,14 @@ let renderHistory = () => {
   for (let i = 0; i < searchCity.length; i++) {
     //console.log(searchCity[i])
     let historyElem = document.createElement('button')
+    historyElem.id = searchCity[i].history
     historyElem.textContent = searchCity[i].history
     document.getElementById('history').append(historyElem)
+
+    //console.log(historyElem)
+    document.getElementById(`${searchCity[i].history}`).addEventListener('click', event => {
+      console.log('ping')
+    })
 
   }
 }
